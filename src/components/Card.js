@@ -18,32 +18,32 @@ class Card extends React.Component {
           alt={ cardName }
           data-testid="image-card"
         />
-        <text
+        <div
           data-testid="description-card"
         >
           { cardDescription }
-        </text>
-        <text
+        </div>
+        <div
           data-testid="attr1-card"
         >
           { cardAttr1 }
-        </text>
-        <text
+        </div>
+        <div
           data-testid="attr2-card"
         >
           { cardAttr2 }
-        </text>
-        <text
+        </div>
+        <div
           data-testid="attr3-card"
         >
           { cardAttr3 }
-        </text>
-        <text
+        </div>
+        <div
           data-testid="rare-card"
         >
           { cardRare }
-        </text>
-        { cardTrunfo && <text data-testid="trunfo-card">Super Trunfo</text> }
+        </div>
+        { cardTrunfo && <div data-testid="trunfo-card">Super Trunfo</div> }
       </main>
     );
   }
