@@ -26,7 +26,7 @@ class App extends React.Component {
   };
 
   handleSaveButtonClick = () => 'a';
-  
+
   render() {
     const { cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage, cardRare,
