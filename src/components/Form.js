@@ -10,6 +10,7 @@ class Form extends React.Component {
     console.log(hasTrunfo);
     return (
       <form>
+        Nome
         <input
           type="text"
           data-testid="name-input"
@@ -17,6 +18,7 @@ class Form extends React.Component {
           value={ cardName }
           onChange={ onInputChange }
         />
+        descricao
         <input
           type="textArea"
           data-testid="description-input"

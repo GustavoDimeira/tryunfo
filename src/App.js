@@ -13,7 +13,33 @@ class App extends React.Component {
     cardRare: 'normal',
     cardTrunfo: false,
     hasTrunfo: false,
-    isSaveButtonDisabled: false,
+    isSaveButtonDisabled: true,
+  }
+
+  testarBotao = () => {
+    const { cardName, cardDescription, cardAttr1,
+      cardAttr2, cardAttr3, cardImage } = this.state;
+    const maxValue = 90;
+    const minValue = 0;
+    if (cardName !== ''
+      && cardDescription !== ''
+      && cardAttr1 <= maxValue
+      && cardAttr2 <= maxValue
+      && cardAttr3 <= maxValue
+      && cardImage !== ''
+      && cardAttr1 >= minValue
+      && cardAttr2 >= minValue
+      && cardAttr3 >= minValue) {
+      const c1 = parseFloat(cardAttr1);
+      const c2 = parseFloat(cardAttr2);
+      const c3 = parseFloat(cardAttr3);
+      const soma = c1 + c2 + c3;
+      const maxSoma = 210;
+      if (soma <= maxSoma) {
+        return false;
+      }
+      return true;
+    } return true;
   }
 
   handleInputChange = (event) => {
@@ -22,6 +48,10 @@ class App extends React.Component {
     const value = tag.type === 'checkbox' ? tag.checked : tag.value;
     this.setState({
       [name]: value,
+    }, () => {
+      this.setState({
+        isSaveButtonDisabled: this.testarBotao(),
+      });
     });
   };
 
