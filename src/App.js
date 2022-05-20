@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import CardList from './components/CardList';
 
 class App extends React.Component {
   state = {
@@ -14,7 +15,7 @@ class App extends React.Component {
     cardTrunfo: false,
     hasTrunfo: false,
     isSaveButtonDisabled: true,
-    cards: undefined,
+    cards: [],
   }
 
   testarBotao = () => {
@@ -70,16 +71,11 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
     };
+    cards.push(card);
     if (card.cardTrunfo) {
       this.setState({
         hasTrunfo: true,
       });
-    }
-    let final;
-    if (cards === undefined) { // aqui
-      final = card;
-    } else {
-      final = cards + card; // auqi
     }
     this.setState({
       cardName: '',
@@ -91,14 +87,13 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
-      cards: final,
-    }, () => console.log(this.state));
+    });
   };
 
   render() {
     const { cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage, cardRare,
-      cardTrunfo, hasTrunfo, isSaveButtonDisabled } = this.state;
+      cardTrunfo, hasTrunfo, isSaveButtonDisabled, cards } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -126,6 +121,19 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
         />
+        {cards.map((item, index) => (
+          <CardList
+            cardName={ item.cardName }
+            cardDescription={ item.cardDescription }
+            cardAttr1={ item.cardAttr1 }
+            cardAttr2={ item.cardAttr2 }
+            cardAttr3={ item.cardAttr3 }
+            cardImage={ item.cardImage }
+            cardRare={ item.cardRare }
+            cardTrunfo={ item.cardTrunfo }
+            key={ index }
+          />
+        ))}
       </div>
     );
   }
