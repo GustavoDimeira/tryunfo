@@ -14,6 +14,7 @@ class App extends React.Component {
     cardTrunfo: false,
     hasTrunfo: false,
     isSaveButtonDisabled: true,
+    cards: undefined,
   }
 
   testarBotao = () => {
@@ -56,6 +57,30 @@ class App extends React.Component {
   };
 
   handleSaveButtonClick = () => {
+    const { cardName, cardDescription,
+      cardAttr1, cardAttr2, cardAttr3,
+      cardImage, cardRare, cardTrunfo, cards } = this.state;
+    const card = {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    };
+    if (card.cardTrunfo) {
+      this.setState({
+        hasTrunfo: true,
+      });
+    }
+    let final;
+    if (cards === undefined) { // aqui
+      final = card;
+    } else {
+      final = cards + card; // auqi
+    }
     this.setState({
       cardName: '',
       cardDescription: '',
@@ -65,9 +90,9 @@ class App extends React.Component {
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
-      hasTrunfo: false,
       isSaveButtonDisabled: true,
-    });
+      cards: final,
+    }, () => console.log(this.state));
   };
 
   render() {
